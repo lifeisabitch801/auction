@@ -1,0 +1,20 @@
+html{background:url(../images/loading-bg.jpg) repeat center center;}
+*{margin:0;padding:0;}
+img{border:none;}
+li,ul,ol{list-style-type:none;}
+#cz-center{min-width:972px;width:972px;margin:0 auto;position:relative;}
+/*top*/
+.top-link{position:absolute;top:19px;right:2px;padding-left:16px;background:url(../images/head-pi.png) no-repeat center left;height:20px;z-index:11;}
+.top-link li{float:left; font-family:"宋体";font-size:12px;}
+.top-link li.pi{background:url(../images/top-link-pi.jpg) no-repeat center center;width:1px;height:11px;}
+.top-link li.title{padding:0 14px;}
+.top-link li a{text-decoration:none;color:#4f4f4f;}
+.cz-top-right{position:absolute;background:url(../images/load-right-top.png) no-repeat center center;width:227px;height:111px;z-index:9;top:108px;right:15px;}
+/*logo*/
+#cz-load-logo{background:url(../images/load-title-bg.png) no-repeat 0 50px;width:700px;height:auto;position:relative;z-index:10;margin:0 auto;text-align:center; overflow:hidden;}
+.cz-logo-text{height:120px;line-height:120px;color:#231915;font-size:17px;font-family:"微软雅黑";}
+.cz-logo-text span{color:#ae2d2c;font-family:Arial;font-size:14px}
+.cz-logo-botton{margin-top:10px;}
+/*food*/
+#footer-top{background:url(../images/foot-top.png) repeat-x top center;width:972px;margin:0 auto;height:70px;padding-top:8px;clear:both;}
+.footer-text{height:55px;line-height:55px;color:#231915;font-size:14px;font-family:"微软雅黑";text-align:center;}

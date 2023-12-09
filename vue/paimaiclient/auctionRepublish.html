@@ -1,0 +1,287 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>卓越--拍卖信息发布</title>
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		<link href="JsCss/common.css" rel="stylesheet" media="screen" type="text/css" />
+		<script type="text/javascript" src="JsCss/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="JsCss/jquery.min.js"></script>
+		<script type="text/javascript" src="JsCss/vue.min.js"></script>
+		<script type="text/javascript" src="JsCss/axios.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="JsCss/daojishi.js"></script>
+		<script type="text/javascript" src="JsCss/jquery.ui.widget.js"></script>
+		<script type="text/javascript" src="JsCss/jquery.iframe-transport.js"></script>
+		<script type="text/javascript" src="JsCss/jquery.fileupload.js"></script>
+		<script src="JsCss/index.js"></script>
+	</head>
+
+	<body>
+		<div class="header">
+			<ul class="top-link">
+				<li class="title"><a href="#"
+						onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('huiyuaninsert.html');"
+						title='设置本站为浏览器首页(启始页)'>设为首页</a></li>
+				<li class="pi"></li>
+				<li class="title"><a target=_top href="register.html">注册</a></li>
+				<li class="pi"></li>
+				<li class="title"><a href="login.html">登录</a></li>
+			</ul>
+
+			<div class="logo"><a href="index.html"><img src="images/logo.png" width="250" height="82" /></a></div>
+			<div class="menu">
+				<ul>
+					<li><a href="about.html">关于我们</a><span>about us</span></li>
+					<li class="active"><a href="auctioning.html">拍卖信息</a><span>Auction information</span></li>
+					<li><a href="auctioninsert.html">商品展示</a><span>Product showcase</span></li>
+					<li><a href="showData.html">个人信息</a><span>Personal information</span></li>
+					<li><a href="chargeMoney.html">资金管理</a><span>Money management</span></li>
+
+				</ul>
+			</div>
+		</div>
+
+		<div class="clr50"></div>
+		<div class="zy_banner_bg">
+			<div class="zy_banner"></div>
+		</div>
+
+
+
+		<div class="zy_main" id="content">
+			<div class="Left_subMenu">
+				<div class="top_bg"></div>
+				<div class="c_bg">
+					<div class="title">拍卖信息</div>
+					<ul>
+						<li v-on:click="showinfo(0)" :class="{'activer':num==0}"><a href="auction.html">正在竞拍</a></li>
+						<li v-on:click="showinfo(1)" :class="{'activer':num==1}"><a href="showAuction.html">拍卖信息查询</a></li>
+						<li v-on:click="showinfo(2)" :class="{'activer':num==2}"><a href="auctioninsert.html">发布拍品</a></li>
+					</ul>
+				</div>
+				<div class="bottom_bg"></div>
+
+				<div class="ph">
+					<img src="images/ph.png" width="169" height="67" />
+				</div>
+			</div>
+
+			<div class="zy_right">
+				<div class="position">当前位置：<a href="#">拍卖信息</a> > <a href="#">重新发布</a></div>
+				<div class="zy_title">
+					<p>重新发布<span>Auction Republish</span></p>
+				</div>
+				<br>
+
+				<!-- 拍品信息录入  begin-->
+				<div style="position:relative;left:200px;color: red">{{msg}}</div>
+				<div class="cz-guestbook">
+					<form action="" class="cz-form" method="post">
+						<p>商品名称：<input id="gname" name="gname" placeholder="请输入商品名称" v-model="auction.gname"
+								class="cz-birds" style="width:443px"></p>
+						<p>商品类型：<select  v-model="auction.tid" class="cz-birds" style="width:455px;height: 24px" >
+								<option value="">请选择</option>
+								 <option v-for="ty in ptypeslist" :value="ty.tid">{{ty.tname}}</option>
+							</select></p>
+							
+						<p>起拍价格：<input id="bprice" type="number" name="bprice" v-model="auction.bprice" class="cz-birds"
+								style="width:443px"></p>
+						<p>增长价格：<input id="increase" type="number" name="increase" v-model="auction.increase"
+								class="cz-birds" style="width:443px"></p>
+						<p>保证金额：<input id="abmoney" type="number" name="abmoney" value="" v-model="auction.abmoney"
+								class="cz-birds" style="width:443px"></p>
+						<p>开拍时间：<input type="date" @change="validTime" id="stime" name="stime" v-model="auction.stime" class="cz-birds"
+								style="width:443px"></p><span id="stimeMsg"></span>
+						<p>结束时间：<input type="date" @change="validTime" id="etime" name="etime" v-model="auction.etime" class="cz-birds"
+								style="width:443px"></p><span id="etimeMsg"></span>
+						<div id="fileDiv" style="width: 200px; height: 100px;" @click="clickFileDiv()" style="position: relative;">
+							<div style="position: absolute;">图片上传:</div>
+							<input style="display: none;" @change="showImg" type="file" id="myPic" name="pic" :data-url="baseurl+'auction/selectFile'"
+									class="cz-birds" style="width:440px">
+							<div id="imgDiv" style="position: absolute; left: 880px;">
+								<img id="myImg" :src="'http://localhost:8099'+auction.gpic" style="width: 200px; height: 100px; border: 1px solid gray;">
+							</div>
+							
+						</div>
+						
+						<p>备注说明：<textarea id="abackup" name="abackup" v-model="auction.abackup" class="cz-birds"
+								style="width:443px"></textarea></p>
+						<div align="center">
+							<input type="button" @click="updateAuction" class="cz-gkbutton" />
+						</div>
+					</form>
+				</div>
+				<!-- 拍品信息录入  end-->
+
+				<div class="clr10"></div>
+			</div>
+		</div>
+
+		<div id="footer-top">
+			<div class="footer-text">
+				© 小佟拍卖行
+			</div>
+		</div>
+		
+			
+		
+
+		<script>
+			var vm = new Vue({
+				el: '#content',
+				data: {
+					num:2,
+					auction: {
+						aid:"",
+						gpic: "",
+						gname: "",
+						tid: "",
+						bprice: "",
+						increase: "",
+						abmoney: "",
+						stime: "",
+						etime: "",
+						abackup: ""
+
+					},
+					ptypeslist: '',
+					msg: '',
+					formData : new FormData(),
+					oldPic:'',
+				},
+				created: function() {
+					if (null == sessionStorage.getItem("hid")){
+						alert("请先登录")
+						window.location.href = "login.html";
+					}else{
+						// axios.get('auction/getById?aid='+location.search).then(result => {
+						// 	vm.ptypeslist = result.data;
+						// 	vm.auction.tid = '';
+						// });
+
+						var aid = location.search.replace("?","");
+						axios.get("auction/getAuctionByIdAndGetPtypesList?aid="+aid)
+							.then(result=>{
+								//必须要类型列表和宝物信息同时找出来，不然商品类型选中会失效，因为请求是异步的 不一定先查询回来哪个
+								//当auction已经赋值好了的时候 ptypes还没赋值，所以select就选不中对应的类型。。。
+								//这个错误太傻逼了 以后记得处理异步请求的问题.....
+								//商品类型加载
+
+								vm.ptypeslist = result.data.ptypesList;
+
+								vm.auction = result.data.auction;
+								vm.oldPic = vm.auction.gpic;
+								//校验一下时间到现在是不是已经不能发布了
+								vm.validTime()
+							})
+					}
+
+					
+				},
+				methods: {
+					showinfo: function(i) {
+						this.num = i;
+					},
+					showImg(event){
+						//如果直接获取value 是被加密后的路径
+						//通过事件对象获取事件源对象 再将其文件数组的第一个取出来 利用url.创建对象时的url取到地址
+						document.getElementById("myImg").src=URL.createObjectURL(event.target.files[0])
+						this.formData.set("file",event.target.files[0])
+					},
+					clickFileDiv(){
+						$("#myPic").click()
+					},
+					updateAuction: function() {
+						if (this.auction.gname==""||this.auction.tid==""||this.auction.bprice==""||this.auction.increase==""
+						||this.auction.abmoney==""||this.auction.stime==""||this.auction.etime==""||$("#myImg").src == ""){
+							alert("请输入完整拍品信息！")
+							return;
+						}
+						this.validTime();
+						if ($("#etimeMsg").html() == "开拍时期与结拍日期相差少于一天！"){
+							alert("开拍时期与结拍日期相差少于一天！")
+							return;
+						}
+						if ($("#stimeMsg").html() == "当前时间须距发布时间24h以上！"){
+							alert("当前时间须距发布时间24h以上！")
+							return;
+						}
+						this.formData.append("oldPic", this.oldPic);
+						this.formData.append("state", 1);
+						this.formData.append("aid", this.auction.aid);
+					    this.formData.append("gname", this.auction.gname);
+					    this.formData.append("tid", this.auction.tid);
+						this.formData.append("bprice", this.auction.bprice);
+						this.formData.append("increase", this.auction.increase);
+						this.formData.append("abmoney", this.auction.abmoney);
+						this.formData.append("stime", this.auction.stime);
+					    this.formData.append("etime", this.auction.etime);
+					    this.formData.append("abackup", this.auction.abackup);
+						
+						axios({
+							url: "auction/updateAuction",
+							data: this.formData, //在此处上传文件
+							method: "post",
+							async: false,
+							headers: {
+								'Content-Type': 'multipart/this.form-data',
+							},
+							}).then((res) => {
+					          //展示从服务器中获得的图片地址
+					        //  alert("http://localhost:8099"+res.data.imgsrc);
+							alert("发布成功，请等待审核结果！")
+							  this.formData = new FormData();
+							  location.href="showAuction.html"
+					       //   this.$router.push("angjia?flag=0");
+					        }).catch(function(res) {
+					       //   alert(res.data);
+					        })
+				     },
+					 validTime(){
+						 if (this.auction.stime == ""){
+							 return;
+						 }
+						 var nowDate = new Date()
+						 let date = {
+						 	　		year : nowDate.getFullYear(),
+						 	    　　month : nowDate.getMonth()+1,
+						 	    　  date :  nowDate.getDate(),
+						 	    　　hours : nowDate.getHours()
+						 }
+						 let time = this.auction.stime.split("-");
+						 let stime = {
+									year : time[0],
+									month : time[1],
+									date : time[2],
+									hours : 8
+						 }
+						 if (parseInt(stime.year)< parseInt(date.year) || parseInt(stime.month) < parseInt(date.month) 
+						 || parseInt(stime.date) <= parseInt(date.date) || (parseInt(stime.date) - parseInt(date.date) == 1 && parseInt(date.hours) - parseInt(stime.hours) >= 0)){
+							
+							 $("#stimeMsg").html("当前时间须距发布时间当天早上八点24h以上！").css("color","red");
+							 $("#etimeMsg").html("")
+							 return;
+						 }else{
+							 $("#stimeMsg").html("")
+						 }
+						 if (this.auction.etime == ""){
+							 return;
+						 }
+						 if (this.auction.etime <= this.auction.stime){
+							 $("#etimeMsg").html("开拍时期与结拍日期相差少于一天！").css("color","red");
+						 }else{
+							  $("#etimeMsg").html("日期合法！").css("color","green");
+						 }
+					 }
+
+				}
+			});
+			//页面加载
+			$(function() {
+				
+				vm.num = 2;
+			})
+		</script>
+	</body>
+</html>

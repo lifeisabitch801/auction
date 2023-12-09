@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>auction here</title>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="js/element_ui.css" />
+		<script src="js/vue.min.js"></script>
+		<script src="js/element_ui.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<el-breadcrumb separator="/">
+			  <el-breadcrumb-item>首页</el-breadcrumb-item>
+			  <el-breadcrumb-item>拍卖信息管理</el-breadcrumb-item>
+			  <el-breadcrumb-item>拍卖信息发布</el-breadcrumb-item>
+			</el-breadcrumb>
+			<el-row>
+				<el-col style="text-align: center;"><h2>拍卖信息发布</h2></el-col>
+			</el-row>
+			<el-container>
+				<el-aside width="50%">
+					<el-form ref="form" :model="auction" label-width="80px" size="mini">
+						<el-form-item label="编号">
+							<el-input v-model="auction.aid" readonly></el-input>
+						</el-form-item>
+						<el-form-item label="名称">
+							<el-input v-model="auction.gname"></el-input>
+						</el-form-item>
+						<el-form-item label="热度">
+							<el-input v-model="auction.gzan"></el-input>
+						</el-form-item>
+						<el-form-item label="起拍价">
+							<el-input v-model="auction.bprice"></el-input>
+						</el-form-item>
+						<el-form-item label="增长价">
+							<el-input v-model="auction.increase"></el-input>
+						</el-form-item>
+						<el-form-item label="保证金">
+							<el-input v-model="auction.abmoney"></el-input>
+						</el-form-item>
+						<el-form-item label="备注">
+							<el-input v-model="auction.abackup"></el-input>
+						</el-form-item>
+					</el-form>
+				</el-aside>
+				<el-main>
+				</el-main>
+				<el-aside width="45%">
+					<el-form ref="form" :model="auction" label-width="100px" size="mini">
+						<el-form-item label="类型" >
+							<el-upload
+								class="upload-demo"
+								:before-upload="beforeUpload"
+								:action="baseurl+'auction/insertUpload?aid='+auction.aid"
+								:file-list="fileList"
+								list-type="picture"
+								name="apic"
+								:limit="1"
+								:on-exceed="handleExceed">
+								<el-button slot="trigger" size="small" type="primary" :disabled="!auction.aid" >选取文件</el-button>
+								<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过2MB</div>
+							</el-upload>
+						</el-form-item>
+						<el-form-item label="类型" >
+							<el-select v-model="auction.tid" placeholder="请选择类型">
+								<el-option :label="ptypes.tname" v-for="ptypes in ptypesList" :value="ptypes.tid"></el-option>
+							</el-select>
+						</el-form-item>
+						<el-form-item label="开拍时间">
+							<el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="auction.stime"></el-date-picker>
+						</el-form-item>
+						<el-form-item label="结束时间">
+							<el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="auction.etime"></el-date-picker>
+						</el-form-item>
+						<el-form-item size="large">
+							<el-button type="primary" size="medium" @click="modify">发布</el-button>
+							<el-button type="info" size="medium" @click="location='auctionmain.html'">返回</el-button>
+						</el-form-item>
+					</el-form>
+				</el-aside>
+			</el-container>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					auction: {
+						aid: "",
+						gzan: 0,
+						anum: 0,
+						state: 2,
+						cflag: 1,
+					},
+					fileList: [],
+					ptypesList: [],
+				},
+				created(){
+					axios.post("ptypes/selectList").then(res=>{
+						this.ptypesList = res.data;
+					})
+				},
+				methods: {
+					handleExceed(files, fileList) {
+						this.$message.warning("只能上传一个文件");
+					},
+					beforeUpload(file) {
+						if(!this.auction.aid){
+							this.$message.error('必须先发布拍卖信息!');
+							return false;
+						}
+						const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
+						const isLt2M = file.size / 1024 / 1024 < 2;
+
+						if (!isJPG) {
+							this.$message.error('上传头像图片只能是 JPG或PNG 格式!');
+							return false;
+						}
+						if (!isLt2M) {
+							this.$message.error('上传头像图片大小不能超过 2MB!');
+							return false;
+						}
+					},
+					modify: function() {
+						axios.post("auction/insert", this.auction).then(res=>{
+							if(res.data!=0){
+								this.$message({
+									type: "success",
+									message: "操作成功！"
+								});
+								//自增的编号回传回来
+								this.auction.aid = res.data;
+							}else{
+								this.$message({
+									type: "error",
+									message: "操作失败！"
+								});
+							}
+						})
+					},
+				}
+			})
+		</script>
+	</body>
+</html>

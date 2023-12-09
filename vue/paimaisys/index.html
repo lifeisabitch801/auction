@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>卓越拍卖管理系统</title>
+		<style>
+			*{
+				border: 0;
+				margin: 0;
+				padding: 0;
+			}
+			.el-header, .el-footer {
+				background-color: #B3C0D1;
+				color: #333;
+				text-align: center;
+				line-height: 60px;
+			}
+			.el-aside {
+				background-color: #D3DCE6;
+				color: #333;
+				text-align: center;
+				line-height: 100px;
+			}
+			.el-main {
+				background-color: #E9EEF3;
+				color: #333;
+				text-align: center;
+				line-height: 160px;
+			}		
+		</style>
+		<link rel="stylesheet" type="text/css" href="js/element_ui.css" />
+		<script src="js/vue.min.js"></script>
+		<script src="js/element_ui.js"></script>
+		<script src="js/axios.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<el-container>
+				<el-header><h1>卓越拍卖管理系统</h1></el-header>
+				<el-container>
+					<el-aside width="200px">
+						<el-menu default-active="1" class="el-menu-vertical-demo">
+							
+							<el-submenu index="9">
+								<template slot="title"><i class="el-icon-menu"></i>管理员信息管理</template>
+								<el-menu-item-group>
+									<el-menu-item index="9-1" @click="url='adminmain.html'">管理员信息信息</el-menu-item>
+								</el-menu-item-group>
+							</el-submenu>
+							<el-submenu index="1">
+								<template slot="title"><i class="el-icon-menu"></i>会员信息管理</template>
+								<el-menu-item-group>
+									<el-menu-item index="1-1" @click="url='huiyuanmain.html'">会员信息</el-menu-item>
+									<el-menu-item index="1-2" @click="url='moneymain.html'">会员资金纪录</el-menu-item>
+								</el-menu-item-group>
+							</el-submenu>
+							<el-submenu index="2">
+								<template slot="title"><i class="el-icon-menu"></i>基础数据管理</template>
+								<el-menu-item-group>
+									<el-menu-item index="2-1" @click="url='ptypesmain.html'">商品类型信息</el-menu-item>
+								</el-menu-item-group>
+							</el-submenu>
+							<el-submenu index="3">
+								<template slot="title"><i class="el-icon-menu"></i>拍卖管理</template>
+								<el-menu-item-group>
+									<el-menu-item index="3-1" @click="url='auctionmain.html'">拍卖信息审核</el-menu-item>
+									<el-menu-item index="3-2" @click="url='auctionsend.html'">拍卖信息发布</el-menu-item>
+								</el-menu-item-group>
+							</el-submenu>
+							<el-submenu index="4">
+								<template slot="title"><i class="el-icon-menu"></i>竞拍纪录管理</template>
+								<el-menu-item-group>
+									<el-menu-item index="4-1" @click="url='jingpaimain.html'">竞拍纪录信息</el-menu-item>
+								</el-menu-item-group>
+							</el-submenu>
+							<el-submenu index="5">
+								<template slot="title"><i class="el-icon-menu"></i>成交纪录管理</template>
+								<el-menu-item-group>
+									<el-menu-item index="5-1" @click="url='dealrecordmain.html'">成交纪录信息</el-menu-item>
+								</el-menu-item-group>
+							</el-submenu>
+						</el-menu>
+					</el-aside>
+					<el-main>
+						<iframe :src="url" width="95%" height="580px" scrolling="auto" ></iframe>
+					</el-main>
+				</el-container>
+				<el-footer>卓越拍卖&copy;管理系统</el-footer>
+			</el-container>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					url: "ptypesmain.html",
+				},
+			})
+		</script>
+	</body>
+</html>

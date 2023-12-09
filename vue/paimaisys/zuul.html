@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+		<script src="js/axios.min.js"></script>
+	</head>
+	<body>
+		<button onclick="testzuul()">测试跨域</button>
+		<div id="app">
+			<form>
+				<input type="text" v-model="usid" placeholder="用户名"/><br>
+				<input type="password" v-model="upwd" placeholder="密码"/><br>
+				<input type="button" @click="login()" value="登录" />
+			</form>
+			<input type="button" @click="testcro()" value="获取图书" />
+		</div>
+		
+		
+		<script>
+		     var vm = new Vue({
+			     el: "#app",
+				 data:{
+					 usid:'',
+					 upwd:'',
+					 msg:''
+				 },
+				 methods:{
+					
+					 login(){ alert('111');
+						 axios.post("http://localhost:8560/zl/selectLogin","usid="+this.usid+"&upwd="+this.upwd)
+						 .then(resp=>{
+							 localStorage.token=resp.data;
+							 alert(resp.data);
+						 })
+					 },
+					 testcro(){
+						 axios.defaults.headers.common['token']=localStorage.token;
+						 axios.post('http://localhost:8560/order/selectBook',"bid=b107")
+						 .then(resp=>{
+							 alert.log(resp.data)
+						 })
+						 .catch(error=>{
+							 this.msg='请登录';
+						 })
+					 }
+					 
+				 },
+				 }
+			 )
+		     function testzuul(){
+				 axios.post("http://localhost:8560/order/selectBook","bid=b109")
+				 .then(resp=>{
+					 alert(resp.data);
+				 })
+			 }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,843 @@
+@charset "utf-8";
+/*样式重置*/
+<!--/*技术支持，小庄602842076     验证：建站技术支持*/
+/*技术支持，小庄602842076    验证：建站技术支持*/
+/*技术支持，小庄602842076    验证：建站技术支持*/
+/*技术支持，小庄602842076    验证：建站技术支持*/
+/*技术支持，小庄602842076    验证：建站技术支持*/
+/*https://shop116998991.taobao.com/*/
+/*https://shop116998991.taobao.com/*/
+/*https://shop116998991.taobao.com/*/-->
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form, 
+fieldset,input,textarea,p,blockquote,th,td { 
+margin:0; 
+padding:0; 
+} 
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,span,pre,form, 
+fieldset,input,textarea,p,blockquote,th,td{
+font-family: 微软雅黑;
+}
+fieldset,img { 
+border:0; 
+} 
+address,caption,cite,code,dfn,em,strong,th,var { 
+font-style:normal; 
+font-weight:normal; 
+} 
+ol,ul { 
+list-style:none; 
+} 
+caption,th { 
+text-align:left; 
+} 
+h1,h2,h3,h4,h5,h6 { 
+font-size:100%; 
+font-weight:normal; 
+} 
+
+abbr,acronym { border:0; 
+} 
+
+.clr10{
+	clear:both;
+	height:10px;
+	overflow:hidden;
+}
+
+.clr40{
+	clear:both;
+	height:40px;
+	overflow:hidden;
+}
+
+.clr30{
+	clear:both;
+	height:30px;
+	overflow:hidden;
+}
+
+.clr50{
+	clear:both;
+	height:50px;
+	overflow:hidden;
+}
+/*样式重置 end*/
+html{background:url(../images/loading-bg.jpg) repeat center center;}
+#cz-center{min-width:972px;width:972px;margin:0 auto;position:relative;}
+
+/*top*/
+.top-link{ position:absolute;top:19px;right:2px;padding-left:16px;background:url(../images/head-pi.png) no-repeat center left;height:20px;z-index:11;}
+.top-link li{float:left; font-family:"宋体";font-size:12px;}
+.top-link li.pi{background:url(../images/top-link-pi.jpg) no-repeat center center;width:1px;height:11px;}
+.top-link li.title{padding:0 14px;}
+.top-link li a{text-decoration:none;color:#4f4f4f;}
+.cz-top-right{position:absolute;background:url(../images/load-right-top.png) no-repeat center center;width:227px;height:111px;z-index:9;top:108px;right:15px;}
+
+/*header*/
+.header{clear:both; height:110px; width:970px; margin:auto; position:relative;}
+.header .logo{ float:left; padding-top:20px;}
+.header .menu{float:right; width:600px; height:40px; margin-top:70px;}
+
+.menu ul li{
+	float:left;
+	width:100px;
+	text-align:center;
+}
+.menu ul li a{
+	color:#000;
+	display:block;
+	font-size:16px;
+	line-height:20px;
+	height:20px;
+	text-decoration:none;
+	FONT-FAMILY: "Microsoft Yahei"; }
+
+.menu ul li a:hover{
+	color:#a44238;
+}
+
+.menu ul .active a{
+	color:#a44238;
+}
+
+.menu ul li span{
+	display:block;
+	color:#89783d;
+	font-size:10px;
+	height:10px;
+	line-height:10px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+
+/*index.html*/
+.index_banner_bg{
+	width:970px;
+	height:330px;
+	margin:auto;
+	padding-top:30px;
+	padding-bottom:14px;
+	background-repeat: no-repeat;
+	position:relative;
+}
+	
+
+#benner_explain span{
+	display:none;
+}
+
+#benner_pic{
+	clear:both;
+	width:970px;
+	height:330px;
+	margin:auto;
+	position:relative;
+	overflow:hidden;
+}
+
+#benner_pic ul{
+	position:absolute;
+}
+
+#benner_pic ul li{
+	float:left;
+	width:970px;
+	height:330px;
+	text-align:center;
+}
+
+
+#in_LeftBtn{
+	position:absolute; 
+	left:-100px;
+	top:150px;
+	}	
+	
+#in_LeftBtn a{
+	width:23px;
+	height:59px;
+	display:block;
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-image: url(../images/left.png);
+}
+
+#in_LeftBtn a:hover{
+	width:23px;
+	height:59px;
+	display:block;
+	background-image: url(../images/left.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}	
+	
+#in_RightBtn{
+	position:absolute; 
+	right:-100px;
+	top:150px;
+	}	
+	
+#in_RightBtn a{
+	width:23px;
+	height:59px;
+	display:block;
+	background-image: url(../images/right.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+#in_RightBtn a:hover{
+	width:23px;
+	height:59px;
+	display:block;
+	background-image: url(../images/right.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}	
+
+.index_3c_k{
+	width:968px;
+	height:164px;
+	background-color:#FFF;
+	border:solid 1px #cfcfcf;
+	}
+
+.c3_1{
+	float:left;
+	padding:11px 0px 0px 11px;}
+
+.c3_2{
+	float:left;
+	padding:11px 0px 0px 3px;}	
+
+.c3_3{
+	float:left;
+	padding:11px 0px 0px 3px;}		
+
+.index_3c_k .title{
+	width:306px;
+	height:30px;
+	line-height:30px;
+	border-bottom:solid 2px #a44238;
+	}
+
+.index_3c_k .title p{
+	float:left;
+	color:#000;
+	font-size:13px;
+	font-weight:bold;
+	font-family:"Microsoft Yahei";
+	}
+	
+.index_3c_k .title p span{
+	color:#a44238;
+	font-size:15px;
+	padding-right:2px;
+	font-weight:normal;
+	}	
+
+.index_3c_k .title a{
+	float:right;
+	display:block;
+	width:37px;
+	height:8px;
+	margin-top:15px;
+	padding-right:8px;
+	background-image: url(../images/more.gif);
+	background-repeat:no-repeat;
+}
+
+.c3_1c{
+	clear:both;
+	width:306px;
+}
+
+.c3_1c ul{
+	padding-top:5px;
+	}
+	
+.c3_1c ul li{
+	width: 260px;
+	line-height:24px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;-o-text-overflow: ellipsis;
+}
+
+.c3_1c ul li a{
+	color:#666;
+	font-size:12px;
+	text-decoration:none;
+}
+
+.c3_1c ul li a:hover{
+	color:#a44238;
+	}
+
+.yy{
+	float:left;
+	width:14px;
+	height:163px;
+	background-image: url(../images/yy.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	}
+
+.c3_2c{
+	width:306px;
+	clear:both;
+	padding-top:13px;
+	}
+
+.c3_2c .img{
+	float:left;
+}	
+
+.c3_2c .word{
+	float:left;
+	width:133px;
+	padding-left:10px;}	
+
+.c3_2c .word h3 a{
+	color:#000;
+	font-size:14px;
+	text-decoration:none;
+	FONT-FAMILY: "Microsoft Yahei";
+	}	
+
+.c3_2c .word h3 a:hover{
+	color:#a44238;
+	}
+
+.c3_2c .word p{
+	color:#666;
+	font-size:12px;
+	line-height:20px;}
+	
+.left_btn a{
+	display:block;
+	float:left;
+	width:20px;
+	height:46px;
+	margin-top:17px;
+	padding-right:10px;
+	background-image: url(../images/left.gif);
+	background-repeat: no-repeat;
+	}	
+	
+.left_btn a:hover{
+	background-image: url(../images/left2.gif);
+	background-repeat: no-repeat;
+	}
+		
+.right_btn a{
+	display:block;
+	float:right;
+	width:20px;
+	height:46px;
+	margin-top:17px;
+	background-image: url(../images/right.gif);
+	background-repeat: no-repeat;
+	}	
+	
+.right_btn a:hover{
+	background-image: url(../images/right2.gif);
+	background-repeat: no-repeat;
+	}	
+	
+.pro_s{
+	float:left;
+	width:240px;
+	height:80px;
+	overflow:hidden;
+	position:relative;
+}
+
+.pro_s ul{
+	position:absolute;
+	left:0px;}
+	
+.pro_s ul li{
+	float:left;}
+	
+	
+.c3_3c{
+	width:306px;
+	clear:both;
+	padding-top:13px;}	
+
+.c3_3c .img {
+	float:left;
+}
+
+.c3_3c .word{
+	float:left;
+	color:#666;
+	width:168px;
+	font-size:12px;
+	text-indent:2em;
+	line-height:20px;
+	padding-left:15px;
+}	
+	
+	
+/*zy*/	
+.zy_banner_bg{
+	width:100%;
+	height:135px;
+	background-image: url(../images/zy_banner_bg.gif);
+	background-repeat: repeat-x;
+	min-width:972px;
+	}
+
+.zy_banner{
+	width:100%;
+	height:135px;
+	background-image: url(../images/zy_banner.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	}
+
+.zy_main{
+	clear:both;
+	width:970px;
+	margin:auto;
+	padding-top:20px;
+}
+
+.Left_subMenu{
+	float:left;
+	width:181px;
+}
+
+.top_bg{
+	width:181px;
+	height:15px;
+	font-size:0px;
+	background-image: url(../images/subMenu_t.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	}
+	
+.c_bg{
+	width:181px;
+	background-image: url(../images/subMenu_c.png);
+	background-repeat: repeat-y;
+	background-position: center top;
+	}
+
+.c_bg .title{
+	color:#FFF;
+	width:181px;
+	height:40px;
+	font-size:18px;
+	padding-top:3px;
+	text-align:center;
+	FONT-FAMILY: "Microsoft Yahei";
+	background-image: url(../images/subMenu_title_bg.png);
+	background-repeat: no-repeat;
+	background-position: center bottom;	
+}	
+
+.c_bg ul{
+	padding:15px 0px 20px 0px;}
+
+.c_bg ul li{
+	width:181px;
+	height:44px;
+	line-height:44px;
+	font-size:14px;
+	text-align:center;
+	background-image: url(../images/subMenu_li.png);
+	background-repeat: no-repeat;
+	background-position: center bottom;	
+}
+
+.c_bg ul .activer{
+	width:181px;
+	height:44px;
+	line-height:44px;
+	font-size:14px;
+	text-align:center;
+	background-image: url(../images/subMenu_li_activer.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.c_bg ul li a{
+	color:#FFF;
+	width:181px;
+	height:44px;
+	display:block;
+	line-height:44px;
+	font-size:14px;
+	text-align:center;
+	text-decoration:none;
+	background-image: url(../images/subMenu_li.png);
+	background-repeat: no-repeat;
+	background-position: center bottom;	
+}
+
+.c_bg ul li a:hover{
+	background-image: url(../images/subMenu_li_activer.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	}
+
+	
+.bottom_bg{
+	width:181px;
+	height:15px;
+	font-size:0px;
+	background-image: url(../images/subMenu_b.png);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	}
+
+.ph{
+	clear:both;
+	width:181px;
+	padding-top:15px;
+	text-align:center;
+}
+
+.zy_right{
+	float:right;
+	width:760px;
+}
+
+.position{
+	clear:both;
+	color:#a44239;
+	font-size:12px;
+	text-align:right;
+	padding-right:15px;
+}
+
+.position a{
+	color:#a44239;
+	text-decoration:none;
+}
+
+.position a:hover{
+	text-decoration:underline;}
+
+.zy_title{
+	color:#2c2c2c;
+	clear:both;
+	font-family:"Microsoft YaHei";}
+
+.zy_title p{
+	font-size:18px;
+}
+
+.zy_title p span{
+	font-size:14px;
+}
+
+.ts{
+	clear:both;
+	color:#878787;
+	font-size:12px;
+	padding:15px 0px 0px 5px;
+}
+.tx{
+	clear:both;
+	color:#f00;
+	font-size:24px;
+	padding:15px 0px 0px 5px;
+}
+.cz-ullist{overflow: hidden;padding:20px 0 11px 0;}
+.cz-ullist li{width:226px;float:left;margin:0 35px 20px 0;text-align:center;}
+.cz-ullist li a{text-decoration:none;}
+.cz-ullist li p{height:28px;line-height:28px;color:#878787;font-size:12px;}
+.cz-ullist li.last{margin-right:0px;}
+.cz-ullist li a:hover p{color:#a44239;}
+.cz-list-link{background:url(../images/ullistlink-bg.jpg) repeat-x  center center;height:20px;line-height:20px;width:100%;margin-bottom:20px;}
+.cz-link-bg{background:url(../images/loading-bg.jpg) repeat center center;height:20px;line-height:20px;margin:0 auto;padding:0 15px;}
+.cz-link-bg li{float:left;width:18px;text-align:center;}
+.cz-link-bg li.frist{width:55px;text-align:center;height:20px;line-height:20px;padding:0px;}
+.cz-link-bg li a{color:#a44239;text-decoration:none;font-size:13px;display:block;}
+.cz-link-bg li.frist a:hover{background:#a44239;color:#fff;font-weight:normal;}
+.cz-link-bg li a:hover{font-weight:bold;}
+/*electronic.html*/
+.cz-car-left{width:500px;float:left;}
+h2.cz-car-title{font-family:"Microsoft YaHei";font-size:16px;font-weight:normal;color:#2c2c2c;padding:29px 0 18px 0;}
+.cz-car-text p{line-height:20px;font-size:12px;font-family:"Microsoft YaHei";color:#686868;padding-bottom:15px;}
+.cz-car-right{width:234px;height:276px;padding:5px 0;background:url(../images/dashi-tu.png) no-repeat center center;float:right;margin-right:10px;text-align:center;}
+/*master.html*/
+.cz-con-text{padding-top:20px;}
+.cz-con-text p{text-indent:24px;font-size:12px;font-family:"Microsoft YaHei";color:#686868;padding-bottom:15px;line-height:20px;} 
+/*About.html*/
+.cz-cont{padding-top:30px;}
+.cz-cont-title{padding:12px 0 0 7px;}
+.cz-cont-t{font-family:"Microsoft YaHei";font-size:19px;font-weight:bold;color:#231915;}
+.cz-cont-t span{font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:normal;color:#665f5d;}
+.cz-adress{padding:23px 0;}
+.cz-adress p{font-family:"Microsoft YaHei";font-size:14px;font-weight:normal;color:#231915;}
+/*contact_us*/
+.cz-guestbook{
+	margin:10px auto;
+	width:516px;
+	font-size:12px;
+	text-align:right;
+}
+.cz-guestbook input{
+	text-align:left;
+	border:1px solid #bdbdb5;
+	height:20px;
+	line-height:20px;
+	background:#efefef;
+	width:450px;
+	padding-left:10px;
+	font-size:12px;
+}
+.cz-guestbook p{
+	line-height:30px;
+	color:#454545;
+}
+.cz-birds{
+	text-align:left;
+	border:1px solid #bdbdb5;
+	background:#efefef;
+	font-size:12px;
+	color:#a9a9a9;
+	line-height:20px;
+}
+
+textarea.cz-birds,textarea.focus_text{
+	width:450px;
+	height:70px;
+	padding-left:10px;	
+	background:#efefef;
+	border:1px solid #bdbdb5;
+}
+.focus_text{
+	color:#000;
+}
+.cz-sub{
+	width: 260px;
+	padding: 20px 0 0 54px;
+	text-align: left;
+}
+input.cz-gkbutton{
+	background:url(../images/submit.jpg) no-repeat center center;
+	width:84px;
+	height:30px;
+	border:none;
+	cursor:pointer;
+}
+input.jp-button{
+	width:100px;
+	height:30px;
+	border:none;
+	cursor:pointer;
+	color:white;
+	background-color: #A44239;
+}
+input.cx-button{
+	width:100px;
+	height:30px;
+	border:none;
+	cursor:pointer;
+	color:white;
+	background-color: #A44239;
+}
+
+/*guestbook*/
+span.pr-tu{padding:4px 4px 5px 4px;display:block;background:#ffffff;}
+/*product*/
+
+
+
+
+
+
+
+
+
+
+/*news.html*/
+.news{
+	clear:both;
+	padding:20px 0px 0px 20px;
+}
+
+.news_frist{
+	clear:both;
+	width:750px;
+	overflow:hidden;
+	padding-bottom:10px;
+}
+
+.news_frist .news_frist_img{
+	float:left;
+}
+
+.news_frist .news_frist_img img{
+	color:#c6c6c6;
+	padding:1px;
+	border:solid 1px #939392;
+}
+
+.news_frist_w{
+	float:left;
+	padding-left:10px;
+}
+
+.news_frist_w h2{
+	line-height:25px;
+	background-image: url(../images/news_li_bg.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.news_frist_w h2 a{
+	color:#490506;
+	font-size:12px;
+	font-weight:bold;
+	padding-left:5px;
+	text-decoration:none;
+	}
+
+.news_frist_w h2 a:hover{
+	color:#900;
+}
+	
+.news_frist_w p{
+	width:560px;
+	color:#490506;
+	font-size:12px;
+	line-height:20px;
+}
+	
+.news ul{
+	clear:both;
+	width:730px;
+}
+	
+.news ul li{
+	width:710px;
+	height:30px;
+	font-size:12px;
+	padding-left:20px;
+	line-height:30px;
+	border-bottom:dashed 1px #9a634b;
+	background-image: url(../images/news_li_bg.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}	
+
+.news ul li a{
+	float:left;
+	color:#490506;
+	text-decoration:none;
+}
+
+.news ul li a:hover{
+	color:#a9393b;
+}
+
+.news ul li span{
+	float:right;
+	color:#3a3a3a;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+}	
+
+.news_show{
+	clear:both;
+	width:710px;
+	}
+	
+.news_show_title{
+	color:#490506;
+	font-size:16px;
+	text-align:center;
+	line-height:40px;
+	font-weight:bold;
+	border-bottom:solid 2px #dddddd;
+}
+
+.news_show_title h2{
+	font-weight:bold;
+}
+
+.news_show_c{
+	color:#490506;
+	font-size:12px;
+	padding-top:22px;
+	line-height:20px;
+	padding-bottom:50px;
+}
+
+.news_show_c p{
+	text-indent:2em;
+}
+
+/*product_show.html*/
+.pro_img{
+	width:625px;
+	margin:auto;
+	padding:10px;
+	background:#FFF;
+}
+
+.pro_word{
+	color:#666;
+	clear:both;
+	width:645px;
+	margin:auto;
+	padding-bottom:50px;
+}
+
+.pro_word h2{
+	color:#666;
+	display:block;
+	font-size:14px;
+	line-height:40px;
+	font-weight:bold;
+	text-align:center;
+}
+
+.pro_word p{
+	font-size:12px;
+	line-height:20px;
+}
+
+.pro_word p span{
+	color:#a44239;
+}	
+
+/*video.html*/
+/* videobox */
+.videobox{width:730px; height:430px; margin:30px auto 0 auto; overflow:hidden; padding-bottom:50px;}
+
+.video-img{width:615px;height:430px;overflow:hidden; float:left; padding-top:10px;}
+
+.up{clear:both;width:96px; height:10px; background:url(../images/up.png) no-repeat top center; cursor:pointer; padding-bottom:5px; margin:auto;}
+.down{clear:both;width:96px; height:10px; background:url(../images/down.png) no-repeat bottom center; cursor:pointer; padding-top:5px; margin:auto;}
+.up2{clear:both;width:96px; height:10px; background:url(../images/up2.png) no-repeat top center; cursor:pointer; padding-bottom:5px; margin:auto;}
+.down2{clear:both;width:96px; height:10px; background:url(../images/down2.png) no-repeat bottom center; cursor:pointer; padding-top:5px; margin:auto;}
+
+.video-list{width:96px; height:372px; overflow:hidden;float:left; position:relative;}
+.video-list ul{ position:absolute;}
+.video-list li{width:92px;height:52px;overflow:hidden;border:solid 2px #c7c7c7;cursor:pointer; margin-top:6px; _margin-top:3px; font-size:0px;}
+.video-list li:hover{border:solid 2px #C36;}
+
+#video_introduction{clear:both; line-height:30px; font-size:14px; font-family:"Microsoft Yahei";}
+
+
+
+
+/*food*/
+#footer-top{background:url(../images/foot-top.png) repeat-x top center;width:972px;margin:0 auto;height:70px;padding-top:8px;clear:both;}
+.footer-text{height:55px;line-height:55px;color:#231915;font-size:14px;FONT-FAMILY: "Microsoft Yahei";text-align:center;}
+
+
+
+
+
+
+
+

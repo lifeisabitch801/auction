@@ -1,0 +1,73 @@
+.calligraphy{
+	clear:both;
+	width:850px;
+	height:520px;
+	margin:auto;
+	padding-top:20px;
+}
+
+.syFocusThumb IMG {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; VERTICAL-ALIGN: top; BORDER-LEFT-STYLE: none
+}
+.syFocusThumb .pagination I.selected IMG { border:solid 2px #d86062}
+.syFocusThumb {	POSITION: relative; WIDTH: 800px; BACKGROUND: OVERFLOW: hidden;}
+.syFocusThumb .pagination {
+	POSITION: absolute;
+	TEXT-ALIGN: left;
+	WIDTH:850px;
+	HEIGHT: 85px;
+	CLEAR: both;
+	TOP: 420px;
+	LEFT: -15px;
+
+}
+
+.syFocusThumb .thumbWrap {
+	POSITION: absolute; WIDTH: 770px; OVERFLOW: hidden; TOP: 10px; LEFT: 40px;
+}
+.syFocusThumb .thumbWrap IMG {
+	-MS-INTERPOLATION-MODE: bicubic
+}
+.syFocusThumb .holder {
+	WIDTH: 4000px
+}
+.syFocusThumb .holder I {
+	CURSOR: pointer; MARGIN-RIGHT: 20px
+}
+.syFocusThumb .prev {
+	POSITION: absolute;
+	width:14px;
+	height:26px;
+	left:10px;
+	top:20px;
+	CURSOR: pointer;
+	background-image: url(../images/S_left.png);
+	background-repeat: no-repeat;
+}
+.syFocusThumb .next {
+	POSITION: absolute;
+	width:14px;
+	height:26px;
+	CURSOR: pointer;
+	right:20px;
+	top:20px;
+	background-image: url(../images/S_right.png);
+	background-repeat: no-repeat;
+}
+
+
+.syFocusThumb .sliderwrapper{
+	width:800px;
+	height:417px;
+	padding:9px 0px 0px 6px;
+	background-image: url(../images/Bpic_bg.png);
+	background-repeat: no-repeat;
+	}
+.syFocusThumb .contentdiv {
+	HEIGHT: 407px
+}
+.syFocusThumb .toc IMG {
+	width:107px;
+	height:55px;
+	border:solid 2px #b9b9b9;
+}

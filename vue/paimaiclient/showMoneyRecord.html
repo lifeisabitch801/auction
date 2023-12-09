@@ -1,0 +1,229 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>卓越--联系我们</title>
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		<link href="JsCss/common.css" rel="stylesheet" media="screen" type="text/css" />
+		<script type="text/javascript" src="JsCss/vue.min.js"></script>
+		<script type="text/javascript" src="JsCss/axios.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="JsCss/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=0DBTh1xpZIXyV9u1CzpbyFsh"></script>
+		<script type="text/javascript" src="JsCss/marker.js"></script>
+		<script src="JsCss/index.js"></script>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>卓越地图</title>
+		<style type="text/css">
+			
+			#container {
+				width: 600px;
+				height: 250px;
+				border: solid 1px #AAA;
+			}
+
+			table {
+				border-collapse: separate;
+				border-spacing: 10px;
+			}
+			table th{
+				font-size: 18px;
+				
+				color: #A44239;
+			}
+			tr {
+				width: 80px;
+			}
+
+			#index a {
+				margin: 5px 10px;
+				text-decoration: none;
+			}
+			.indexSpan{
+				margin: 10px;
+			}
+			.cz-con-text>span{
+				margin-right:11px;
+			}
+			.light{
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header">
+			<ul class="top-link">
+				<li class="pi"></li>
+				<li class="title"><a target=_top href="register.html">注册</a></li>
+				<li class="pi"></li>
+				<li class="title"><a href="login.html?">登录</a></li>
+			</ul>
+
+			<div class="logo"><a href="index.html"><img src="images/logo.png" width="250" height="82" /></a></div>
+			<div class="menu">
+				<ul>
+					<li><a href="about.html">关于我们</a><span>about us</span></li>
+					<li><a href="auctioning.html">拍卖信息</a><span>Auction information</span></li>
+					<li><a href="product.html">商品展示</a><span>Product showcase</span></li>
+					<li><a href="showData.html">个人信息</a><span>Personal information</span></li>
+					<li class="active"><a href="chargeMoney.html">资金管理</a><span>Money management</span></li>
+				</ul>
+			</div>
+		</div>
+		<!-- 菜单和下面模块的间隔-->
+		<div class="clr50"></div>
+		<!-- 图片 -->
+		<div class="zy_banner_bg">
+			<div class="zy_banner"></div>
+		</div>
+
+
+
+		<div class="zy_main" id="about">
+			<div class="Left_subMenu">
+				<div class="top_bg"></div>
+				<div class="c_bg">
+					<div class="title">个人信息</div>
+					<ul>
+						<li><a href="chargeMoney.html">余额充值</a>
+						</li>
+						<li><a href="extractMoney.html">提现</a></li>
+						<li class="activer"><a
+								href="showMoneyRecord.html">查看交易记录</a></li>
+					</ul>
+				</div>
+				<div class="bottom_bg"></div>
+
+				<div class="ph">
+					<img src="images/ph.png" width="169" height="67" />
+				</div>
+			</div>
+
+
+
+
+			<div id="process" class="zy_right">
+				<div class="position">当前位置：<a href="#">个人信息</a> > <a href="#">查看个人信息</a></div>
+				<div class="zy_title">
+					<p>查看个人信息<span> Show Data </span></p>
+				</div>
+				<div class="cz-con-text">
+					<span>起始范围日期：<input type="date" v-model="beginTime" /></span>
+					<span>结束范围日期：<input type="date" v-model="endTime"/></span>	<br>				
+					<span v-for="(item,index) in typeList">
+						<input type="checkbox":value="item.index" v-model="mrstates"/>{{item.name}}
+					</span>
+					<input type="button" name="" id="" value="查询" style="width: 90px;" @click="selectMy()"/>
+					<form action="" method="" class="cz-form">
+						<table cellspacing="1" cellpadding="1" style="border: 1px solid; width: 759px;">
+							<tr>
+								<th>用户编号</th>
+								<th>用户昵称</th>
+								<th>交易时间</th>
+								<th>交易金额</th>
+								<th>交易类型</th>
+							</tr>
+							<tr v-for="my in mylist" id="b1">
+								<td>{{my.vid}}</td>
+								<td>{{my.vname}}</td>
+								<td>{{my.rightTime}}</td>
+								<td>{{my.demoney}}</td>
+								<td>{{my.mrtype}}</td>
+							</tr>
+							
+						</table>
+					</form>
+				</div>
+				<div id="index">
+					<span class="indexSpan">一共查询到{{total}}条记录 {{pages}}页</span>
+						<span class="indexSpan">当前是第{{current}}页</span>
+						<span><input type="button" value="上一页" @click="current=current-1" 
+						v-if="flag1"
+						/>
+						&nbsp;&nbsp;
+						<input type="button" value="上一页"  v-else disabled/>
+						&nbsp;&nbsp;
+						<input type="button" value="下一页" @click="current=current+1" v-if="flag2"/>
+						&nbsp;&nbsp;
+					<input type="button" value="下一页"  v-else disabled/>
+						</span>
+					
+				</div>
+			</div>
+
+		</div>
+		<div id="footer-top">
+			<div class="footer-text">
+				© AUCTION
+			</div>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: '#about',
+				data: {
+					vid:'',
+					typeList:[
+						{name:'充值', index:0},
+						{name:'提现', index:1},
+						{name:'消费', index:2},
+						{name:'收益', index:3},
+						{name:'违约罚款', index:4}
+					],
+					mrstates:[],
+					mylist:{},
+					total:0,
+					current:1,
+					pages:0,
+					flag1:false,
+					flag2:false,
+					beginTime:"bt",
+					endTime:"et"
+				},
+				created(){
+					this.vid=sessionStorage.getItem("vid");
+						if (null == this.vid){
+							alert("请先登录")
+							window.location.href = "login.html";
+						}else{
+							//交易列表
+							this.getmylist();
+							}
+				},
+				watch:{
+						current:function(){
+							this.getmylist();
+						}
+					},
+				methods:{
+					selectMy(){
+						this.getmylist();
+					},
+					getmylist(){
+						axios.get("http://localhost:8088/auction/vips/getmymoneyrecord?pageno="+this.current+"&vid="+this.vid+"&mrstates="+this.mrstates+"&beginTime="+this.beginTime+"&endTime="+this.endTime).then(resp =>{
+								this.mylist=resp.data.records;
+								this.total=resp.data.total;
+								this.current=resp.data.current;
+								this.pages=resp.data.pages;
+								
+								if(this.current==this.pages||(this.current==1&&this.pages==0)){
+									this.flag2=false;
+								}else{
+									this.flag2=true;
+								}
+								if(this.current==1){
+									this.flag1=false;
+								}else{
+									this.flag1=true;
+								}
+							})
+					}
+				}
+			});
+			
+		</script>
+
+	</body>
+</html>

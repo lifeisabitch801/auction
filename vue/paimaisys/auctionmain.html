@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>ptypes here</title>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="js/element_ui.css" />
+		<script src="js/vue.min.js"></script>
+		<script src="js/element_ui.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<el-breadcrumb separator="/">
+			  <el-breadcrumb-item>首页</el-breadcrumb-item>
+			  <el-breadcrumb-item>拍卖管理</el-breadcrumb-item>
+			  <el-breadcrumb-item>拍卖审核</el-breadcrumb-item>
+			</el-breadcrumb>
+			<el-row>
+				<el-col style="text-align: center;"><h2>拍卖信息审核</h2></el-col>
+			</el-row>
+			<el-table :data="list" ref="objs" style="width: 100%;">
+				<el-table-column type="selection" align="center"></el-table-column>
+				<el-table-column prop="gname" label="商品名称" align="center"></el-table-column>
+				<el-table-column prop="bprice" label="价格" align="center"></el-table-column>
+				<el-table-column label="操作" align="center" width="180px">
+					<template slot-scope="scope">
+						<el-button size="small" type="primary" @click="toupdate(scope.$index, show=true, url='update', action='修改')">通过</el-button>
+						<el-button size="small" type="danger" @click="deleteobj(scope.$index)">拒绝</el-button>
+					</template>
+				</el-table-column>
+			</el-table>
+			<el-row style="margin-top: 5px;">
+				<el-col :xs="15" :sm="15">
+					<el-pagination :current-page.sync="curpage" :page-size.sync="line" :page-sizes="pagelist"
+						layout="total, sizes, prev, pager, next, jumper" :total="total">
+					 </el-pagination>
+				</el-col>
+				<el-col :xs="6" :sm="6" style="text-align: right;">
+				</el-col>
+			</el-row>			
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					curpage:1,
+					total: 0,
+					totalpage: 0,
+					list:[],
+					line:3,
+					pagelist: [3]
+				},
+				computed:{
+					param: function(){
+						return `page=${this.curpage}`;
+					}
+				},
+				watch:{
+					curpage: function () {
+						this.selectByPage();
+					}
+				},
+				methods:{
+					selectByPage(){
+						axios.post("auction/selectByPage", this.param).then((res)=>{
+							console.log(res.data)
+							this.list = res.data.list;
+							this.totalpage = res.data.pages;
+							this.total = res.data.total;
+							this.line = res.data.pageSize;
+							this.pagelist = [this.line]
+						})
+					}
+				},
+				created(){
+					this.list=[{gname:'梨花木桌椅'}]
+					//this.selectByPage();
+				}
+			})
+		</script>
+	</body>
+</html>

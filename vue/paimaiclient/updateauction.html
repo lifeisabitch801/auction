@@ -1,0 +1,253 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>卓越--拍卖信息</title>
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		<link href="JsCss/common.css" rel="stylesheet" media="screen" type="text/css" />
+		<script type="text/javascript" src="JsCss/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="JsCss/vue.min.js"></script>
+		<script type="text/javascript" src="JsCss/axios.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="JsCss/daojishi.js"></script>
+		<script src="JsCss/index.js"></script>
+		<style type="text/css">
+			#index a {
+				margin: 5px 10px;
+				text-decoration: none;
+			}
+
+			.indexSpan {
+				margin: 10px;
+			}
+
+			.cz-con-text>span {
+				margin-right: 20px;
+			}
+
+			.light {
+				color: red;
+			}
+
+			span {
+				color: #999999;
+			}
+
+			a {
+				text-decoration: none;
+				color: #999999;
+			}
+
+			a:hover {
+				color: #A44239;
+			}
+
+			.aisAlive {
+				font-weight: bolder;
+				color: #A44239;
+			}
+
+			.page {
+				border: 1px #ff8200 solid;
+				background-color: white;
+				color: #999999;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header">
+			<ul class="top-link">
+				
+				<li class="pi"></li>
+				<li class="title"><a target=_top href="register.html">注册</a></li>
+				<li class="pi"></li>
+				<li class="title"><a href="login.html">登录</a></li>
+			</ul>
+
+			<div class="logo"><a href="index.html"><img src="images/logo.png" width="250" height="82" /></a></div>
+			<div class="menu">
+				<ul>
+					<li><a href="about.html">关于我们</a><span>about us</span></li>
+					<li class="active"><a href="auctioning.html">拍卖信息</a><span>Auction information</span></li>
+					<li><a href="auctioninsert.html">商品展示</a><span>Product showcase</span></li>
+					<li><a href="showData.html">个人信息</a><span>Personal information</span></li>
+					<li><a href="chargeMoney.html">资金管理</a><span>Money management</span></li>
+
+				</ul>
+			</div>
+		</div>
+
+		<div class="clr50"></div>
+		<div class="zy_banner_bg">
+			<div class="zy_banner"></div>
+		</div>
+
+
+
+		<div class="zy_main" id="content">
+			<div class="Left_subMenu">
+				<div class="top_bg"></div>
+				<div class="c_bg">
+					<div class="title">拍卖信息</div>
+					<ul>
+						<li class="activer"><a href="auctioning.html">正在竞拍</a></li>
+						<li><a href="showAuction.html">拍卖信息查询</a>
+						</li>
+						<li><a href="auctioninsert.html">发布拍品</a>
+						</li>
+						<li><a href="myOrder.html">我的订单</a></li>
+					</ul>
+				</div>
+				<div class="bottom_bg"></div>
+
+				<div class="ph">
+					<img src="images/ph.png" width="169" height="67" />
+				</div>
+			</div>
+
+			<div class="zy_right">
+				<div class="position">当前位置：<a href="#">拍卖信息</a> > <a href="#">正在竞拍</a></div>
+				<div class="zy_title">
+					<p>正在竞拍<span>Auction information </span></p>
+				</div>
+				<div id="auctioninfo">
+					<div style="padding-top:25px;float: left;">
+						<div>
+							<!-- <img v-bind:src="picpath" width="625" height="328" /> -->
+							<img :src="'http://localhost:10002/images'+auction.gpic" width="400" height="350" />
+						</div>
+						<div style="height: 20px">&nbsp;</div>
+						<div style="height: 20px;clear: both;">&nbsp;</div>
+					</div>
+					<div style="padding-left: 500px;padding-top:25px;">
+
+						<span style="font-size: 30px"></span>
+						<p><span>当前竞拍价：{{nnprice}}</span>
+							<span 
+								style="color: red;font-size: 25px"></span>
+							
+						</p>
+						<p><span></span>
+							<span style="color: red;font-size: 20px"></span>
+						</p>
+						<br>
+						<p><span>宝物名称：{{auction.gname}}</span></p>
+						<p><span>起拍价：{{auction.bprice}}</span></p>
+						<p><span>增长价：{{auction.increase}}</span></p>
+						<p><span>保证金：{{auction.abmoney}}</span></p>
+						<p><span>开拍日期：{{auction.stime}}</span></p>
+						<p><span>结拍日期：{{auction.etime}}</span></p>
+						<!-- <p><span>简介：{{auction.gname}}</span></p> -->
+						<br>
+						<br>
+						<p>请输入竞拍价格：<input v-model="joinprice"
+								type="number"  style="width: 120px" />
+							<span id="myNpriceMsg">
+
+							</span>
+						</p>
+
+						<br>
+						<p>
+							<input type="button" value="立即竞拍" class="jp-button"
+							 @click="toJoinAu()"/>&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" value="关闭当前页面" class="jp-button" 
+								onclick="history.back();"
+							/>
+						</p>
+						<span style="color: red;font-size: 20px"></span>
+					</div>
+					<span id="playAuctionMsg" style="margin-left: 120px;">
+
+					</span>
+				</div>
+				<!-- 竞拍页面  end-->
+
+				<div class="clr10"></div>
+
+			</div>
+
+		</div>
+
+
+		<div id="footer-top">
+			<div class="footer-text">
+				© AUCTION
+			</div>
+		</div>
+
+
+		<script>
+			var vm = new Vue({
+				el: '#content',
+				data: {
+					vid:'',
+					aid:'',
+					auction:{
+						
+					},
+					nnprice:'',
+					joinprice:''
+					
+				},
+				created: function() {
+					this.vid=sessionStorage.getItem("vid");
+						if (null == this.vid){
+							alert("请先登录")
+							window.location.href = "login.html";
+						}else{
+							var str = location.href;
+							var id = str.substring(str.lastIndexOf("=")+1);
+					axios.get("http://localhost:8088/auction/auction/getoneau?aid="+id).then(resp =>{
+						this.auction=resp.data;
+						this.aid=resp.data.aid;
+						if(resp.data.nprice==null){
+							this.nnprice="暂无竞拍者";
+							
+						}else{
+							this.nnprice=resp.data.nprice;
+						}
+					})
+					}
+				},
+				methods: {
+					 toJoinAu(){
+						//var flag = true;
+						if(this.auction.vid==this.vid){
+							alert("参与竞拍失败");
+						}else{
+						if(this.auction.nprice==null){
+							
+							if(this.joinprice<this.auction.bprice+this.auction.increase){
+								alert("参与竞拍失败");
+							}else{
+								this.joinAu();
+							}
+						}else{
+							if(this.joinprice<this.auction.nprice+this.auction.increase){
+								alert("参与竞拍失败");
+							}else{
+								 this.joinAu();
+							}
+						}
+						}
+					},
+					 joinAu(){
+						 axios.get("http://localhost:8088/auction/auction/joinauction?aid="
+							+this.auction.aid+"&vid="+this.vid+"&nprice="+this.joinprice
+						 ).then(resp =>{
+							 alert(resp.data.msg);
+							 location.reload();
+						 })
+					 }
+					
+				}
+			});
+
+			$(function() {
+				
+			})
+		</script>
+	</body>
+</html>

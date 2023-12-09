@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="js/element_ui.css" />
+		<script src="js/vue.min.js"></script>
+		<script src="js/element_ui.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<el-breadcrumb separator="/">
+			  <el-breadcrumb-item>首页</el-breadcrumb-item>
+			  <el-breadcrumb-item>竞拍记录管理</el-breadcrumb-item>
+			  <el-breadcrumb-item>竞拍记录信息</el-breadcrumb-item>
+			</el-breadcrumb>
+			<el-row>
+				<el-col style="text-align: center;"><h2>竞拍信息管理</h2></el-col>
+			</el-row>
+			<el-form :inline="true" :model="formInline" class="demo-form-inline">
+			  <el-form-item label="会员编号">
+			    <el-input v-model="formInline.user" placeholder="会员编号"></el-input>
+			  </el-form-item>
+			  <el-form-item label="拍品类型">
+			    <el-select v-model="formInline.ptype" placeholder="">
+			    
+			    </el-select>
+			  </el-form-item>
+			  <el-form-item>
+			    <el-button type="primary" >查询</el-button>
+			  </el-form-item>
+			</el-form>
+			<el-table :data="list" ref="objs" style="width: 100%;">
+				<el-table-column type="selection" align="center"></el-table-column>
+				<el-table-column prop="aid" label="拍品名称" align="center"></el-table-column>
+				<el-table-column prop="ptype" label="拍品类型" align="center"></el-table-column>
+				<el-table-column prop="aname" label="竞拍者编号" align="center"></el-table-column>
+				<el-table-column prop="rid" label="竞拍价" align="center"></el-table-column>
+				<el-table-column prop="abackup" label="竞拍时间" align="center"></el-table-column>
+				<el-table-column label="操作" align="center" width="180px">
+					<template slot-scope="scope">
+						<el-button size="small" type="danger">删除</el-button>
+					</template>
+				</el-table-column>
+			</el-table>
+			<el-row style="margin-top: 5px;">
+				<el-col :xs="15" :sm="15">
+					<el-pagination :current-page.sync="curpage" :page-size.sync="line" :page-sizes="pagelist"
+						layout="total, sizes, prev, pager, next, jumper" :total="total">
+					 </el-pagination>
+				</el-col>
+				<el-col :xs="6" :sm="6" style="text-align: right;">
+				</el-col>
+			</el-row>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					show: false,
+					url: '',
+					action: '',
+					admin: {},
+					list: [],
+					curpage: 1,
+					total: 0,
+					line: 10,
+					pagelist: [10],
+					formInline:{
+						user:'',
+						ptype:''
+					}
+				},
+				watch:{
+				  curpage: function () {
+					this.selectByPage();
+				  }
+				},
+				computed:{
+				  param:function () {
+					return `page=${this.curpage}`;
+				  }
+				},
+				created: function() {
+
+					//this.selectByPage;
+					this.list=[{aid:'zhangsan', aname:'张三'}]
+					
+				},
+				methods: {
+					selectByPage: function() {
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

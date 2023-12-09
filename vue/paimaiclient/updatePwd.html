@@ -1,0 +1,203 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>卓越--联系我们</title>
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		<link href="JsCss/common.css" rel="stylesheet" media="screen" type="text/css" />
+		<script type="text/javascript" src="JsCss/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="JsCss/vue.min.js"></script>
+		<script type="text/javascript" src="JsCss/axios.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=0DBTh1xpZIXyV9u1CzpbyFsh"></script>
+		<script type="text/javascript" src="JsCss/marker.js"></script>
+		<script src="JsCss/index.js"></script>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>卓越地图</title>
+		<style type="text/css">
+			#container {
+				width: 600px;
+				height: 250px;
+				border: solid 1px #AAA;
+			}
+			table{
+				border-collapse:separate; 
+				border-spacing:10px;
+			}
+			tr{
+				width: 80px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header">
+			<ul class="top-link">
+				<li class="pi"></li>
+				<li class="title"><a target=_top href="register.html">注册</a></li>
+				<li class="pi"></li>
+				<li class="title"><a href="login.html">登录</a></li>
+			</ul>
+
+			<div class="logo"><a href="index.html"><img src="images/logo.png" width="250" height="82" /></a></div>
+			<div class="menu">
+				<ul>
+					<li><a href="about.html">关于我们</a><span>about us</span></li>
+					<li><a href="auctioning.html">拍卖信息</a><span>Auction information</span></li>
+					<li><a href="product.html">商品展示</a><span>Product showcase</span></li>
+					<li class="active"><a href="showData.html">个人信息</a><span>Personal information</span></li>
+					<li><a href="chargeMoney.html">资金管理</a><span>Money management</span></li>
+
+				</ul>
+			</div>
+		</div>
+		<!-- 菜单和下面模块的间隔-->
+		<div class="clr50"></div>
+		<!-- 图片 -->
+		<div class="zy_banner_bg">
+			<div class="zy_banner"></div>
+		</div>
+
+
+
+		<div class="zy_main" id="about">
+			<div class="Left_subMenu">
+				<div class="top_bg"></div>
+				<div class="c_bg">
+					<div class="title">个人信息</div>
+					<ul>
+						<li><a href="showData.html">查看个人信息</a></li>
+						<li><a href="register.html">注册</a></li>
+						<li><a href="login.html">登录</a></li>
+						<li class="activer"><a href="updatePwd.html">修改密码</a></li>
+
+					</ul>
+				</div>
+				<div class="bottom_bg"></div>
+
+				<div class="ph">
+					<img src="images/ph.png" width="169" height="67" />
+				</div>
+			</div>
+
+			<div id="contact" class="zy_right">
+				<div class="position">当前位置：<a href="#">个人信息</a> > <a href="#">修改密码</a></div>
+				<div class="zy_title">
+					<p>修改密码<span> Update Pwd </span></p>
+				</div>
+				<div class="cz-cont">
+					<form action="" method="" class="cz-form">
+						<table cellspacing="" cellpadding="">
+							<tr>
+								<td>会员编号： </td>
+								<td><input readonly type="text" class="cz-birds"
+									v-model="vid" />
+								</td>
+							</tr>
+							<tr>
+								<td>旧密码： </td>
+								<td><input  type="password" class="cz-birds"
+								@blur="validold()"
+								v-model="oldpwd" placeholder="请输入旧密码" />
+								<span>{{oldmsg}}</span></td>
+							</tr>
+							<tr>
+								<td>新密码： </td>
+								<td><input type="password"  class="cz-birds"
+								v-model="newpwd"		
+								placeholder="请输入新密码" />
+								<span>{{newmsg}}</span>
+								</td>
+										
+							</tr>
+							<tr>
+								<td>确认新密码： </td>
+								<td><input type="password"  class="cz-birds"
+									v-model="renewpwd"	
+									placeholder="请输入新密码" @change="validre()" />
+									<span>{{remsg}}</span></td>
+										
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align: center;">
+									<div class="cz-sub">
+										<input type="button" class="cz-gkbutton" 
+										@click="updatePwd()" />
+									</div>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="footer-top">
+			<div class="footer-text">
+				© AUCTION
+			</div>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: '#about',
+				data:{
+					vid:'',
+					oldpwd:'',
+					newpwd:'',
+					renewpwd:'',
+					remsg:'',
+					oldmsg:'',
+					newmsg:'',
+					flag1:true
+				},
+				created(){
+					this.vid=sessionStorage.getItem("vid");
+					/* axios.get("http://localhost:8088/auction/vips/getvid?vid="+this.vid).then((resp)=>{
+						this.vid=resp.data;
+					}) */
+				},
+				methods: {
+					 validold(){
+						//alert(this.oldpwd);
+						axios.get("http://localhost:8088/auction/vips/validold?oldpwd="
+									+this.oldpwd+"&vid="+this.vid).then((resp)=>{
+							if(resp.data==0){
+								this.flag1 = false;
+								this.oldmsg="当前密码错误，请重新输入";
+							}else{
+								this.oldmsg="密码正确";
+								this.flag1=true;
+							}
+						})
+					}, 
+					validre(){
+						if(this.newpwd==this.renewpwd){
+							this.remsg="确认密码与新密码一致";
+						}else{
+							this.flag1=false;
+							this.remsg="确认密码与新密码不一致";
+						}
+					},
+					updatePwd(){
+						if(this.flag1==true){
+						axios.get("http://localhost:8088/auction/vips/updatepwd?newpwd="
+								+this.newpwd+"&vid="+this.vid
+						).then((resp)=>{
+							if(resp.data==1){
+								alert("修改成功");
+								location.reload();
+							}else{
+								alert("修改失败");
+							}
+						})
+						}else{
+							alert("update===fail====")
+						}
+					},
+				}
+			});
+			
+		</script>
+
+	</body>
+</html>

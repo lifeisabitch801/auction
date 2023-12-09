@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="js/element_ui.css" />
+		<script src="js/vue.min.js"></script>
+		<script src="js/element_ui.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<el-breadcrumb separator="/">
+			  <el-breadcrumb-item>首页</el-breadcrumb-item>
+			  <el-breadcrumb-item>管理员信息管理</el-breadcrumb-item>
+			  <el-breadcrumb-item>管理员展示</el-breadcrumb-item>
+			</el-breadcrumb>
+			<el-row>
+				<el-col style="text-align: center;"><h2>管理员信息管理</h2></el-col>
+			</el-row>
+			<el-table :data="list" ref="objs" style="width: 100%;">
+				<el-table-column type="selection" align="center"></el-table-column>
+				<el-table-column prop="aid" label="编号" align="center"></el-table-column>
+				<el-table-column prop="aname" label="姓名" align="center"></el-table-column>
+				<el-table-column prop="rid" label="角色" align="center"></el-table-column>
+				<el-table-column prop="abackup" label="备注" align="center"></el-table-column>
+				<el-table-column label="操作" align="center" width="180px">
+					<template slot-scope="scope">
+						<el-button size="small" type="primary" @click="toupdate(scope.$index, show=true, url='update', action='修改')">修改</el-button>
+						<el-button size="small" type="danger" @click="deleteobj(scope.$index)">删除</el-button>
+					</template>
+				</el-table-column>
+			</el-table>
+			<el-row style="margin-top: 5px;">
+				<el-col :xs="15" :sm="15">
+					<el-pagination :current-page.sync="curpage" :page-size.sync="line" :page-sizes="pagelist"
+						layout="total, sizes, prev, pager, next, jumper" :total="total">
+					 </el-pagination>
+				</el-col>
+				<el-col :xs="6" :sm="6" style="text-align: right;">
+				</el-col>
+			</el-row>
+			<el-dialog :title="action" :visible.sync="show">
+				<el-form ref="form" :model="admin" label-width="80px" size="mini">
+					<el-form-item label="编号">
+						<el-input v-model="admin.aid"></el-input>
+					</el-form-item>
+					<el-form-item label="姓名">
+						<el-input v-model="admin.aname"></el-input>
+					</el-form-item>
+					<el-form-item label="密码">
+						<el-input v-model="admin.apwd"></el-input>
+					</el-form-item>
+					<el-form-item label="角色">
+						<el-input v-model="admin.rid"></el-input>
+					</el-form-item>
+					<el-form-item label="备注">
+						<el-input v-model="admin.abackup"></el-input>
+					</el-form-item>
+					<el-form-item size="large">
+						<el-button type="primary" size="medium" @click="modify">保存</el-button>
+					</el-form-item>
+				</el-form>
+			</el-dialog>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					show: false,
+					url: '',
+					action: '',
+					admin: {},
+					list: [],
+					curpage: 1,
+					total: 0,
+					line: 10,
+					pagelist: [10]
+				},
+				watch:{
+				  curpage: function () {
+					this.selectByPage();
+				  }
+				},
+				computed:{
+				  param:function () {
+					return `page=${this.curpage}`;
+				  }
+				},
+				created: function() {
+
+					//this.selectByPage;
+					this.list=[{aid:'zhangsan', aname:'张三'}]
+					
+				},
+				methods: {
+					selectByPage: function() {
+						axios.post("admin/selectByPage", this.param).then(res=>{
+							this.list = res.data.list;
+							  this.total = res.data.total;
+							  this.line = res.data.pageSize;
+							  this.pagelist = [this.line];
+						})
+					},
+					deleteobj: function(i) {
+						this.$confirm("确认删除？", "提示", {
+							confirmButtonText: "确定",
+							cancelButtonText: "取消",
+							type: "warning"
+						}).then(()=>{
+							axios.post("admin/delete?aid="+this.list[i].aid).then(res=>{
+								if(res.data=="1"){
+									this.$message({
+										type: "success",
+										message: "操作成功！"
+									});
+									//删除当前行
+									this.list.splice(i, 1);
+								}else{
+									this.$message({
+										type: "error",
+										message: "操作失败！"
+									});
+								}
+							})
+						}).catch(() => {
+							this.$message({
+								type: "info",
+								message: "已取消删除！"
+							});
+						});
+					},
+					toinsert: function() {
+						this.admin = {};
+					},
+					toupdate: function(i) {
+						this.admin = this.list[i];
+					},
+					modify: function() {
+						axios.post("admin/"+this.url, this.admin).then(res=>{
+							if(res.data=="1"){
+								this.$message({
+									type: "success",
+									message: "操作成功！"
+								});
+								if(this.url.lastIndexOf("insert")>=0){
+									this.admin = {};
+									this.selectByPage();
+								}
+							}else{
+								this.$message({
+									type: "error",
+									message: "操作失败！"
+								});
+							}
+						}).catch(error=>{
+							if(error.response.status==401){
+								this.$message({
+								  dangerouslyUseHTMLString: true,
+								  message: "<a href='login.html' target='_top'>请先登录！3秒后返回登录页</a>"
+								});
+								setTimeout(()=> {
+									top.location = 'login.html';
+								}, 3000);
+							}else{
+								vm.msg = "服务器异常！";
+							}
+						})
+					},
+					deleteList: function() {
+						let selections = this.$refs.objs.selection;
+						if(selections.length==0){
+							this.$message({
+								type: "error",
+								message: "必须选中一行！"
+							});
+							return;
+						}
+						let ids = [];
+						for(let i=0; i<selections.length; i++){
+							ids.push(selections[i].aid);
+						}
+						this.$confirm("是否删除所有选中项？", "提示", {
+							confirmButtonText: "确定",
+							cancelButtonText: "取消",
+							type: "warning"
+						}).then(()=>{
+							var params = new URLSearchParams();
+							params.append("aids", ids);
+							axios.post("admin/deleteList", params).then(res=>{
+								if(res.data=="1"){
+									this.$message({
+										type: "success",
+										message: "删除成功！"
+									});
+									this.selectByPage();
+								}else{
+									this.$message({
+										type: "error",
+										message: "删除失败！"
+									});
+								}
+							})
+						}).catch(() => {
+							this.$message({
+								type: "info",
+								message: "已取消删除！"
+							});
+						});
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

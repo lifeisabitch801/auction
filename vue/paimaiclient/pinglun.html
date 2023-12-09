@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			div{
+				/* border: 1px black solid; */
+			}
+			span{
+				color: #999999;
+			}
+			a{
+				text-decoration: none;
+				color: #999999;
+			}
+			a:hover{
+				color: #ff8200;
+			}
+			.aisAlive{
+				font-weight: bolder;
+				color: #ff8200;
+			}
+			.page{
+				border: 1px #ff8200 solid;
+				background-color: white;
+				color: #999999;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 评论区 begin -->
+		<div id="pinglunqu">
+			<!-- 发布评论 -->
+			<form>
+				<input type="text" placeholder=" 在此处发布你的评论" style="outline: none; width: 400px;height: 25px; background-color: white; border: 1.5px #ff8200 solid; border-radius: 5px;">
+				<input type="button" value="评论" style="border-radius: 15px; width: 70px; height: 30px; color: white; border: none; background-color: #ff8200; font-weight: bolder; margin-top: 2px;">
+			</form>
+			<br>
+			<!-- 排序区 按热度/按时间 -->
+			<div style="width: 145px; padding-bottom: 20px;">
+				<div style="display: inline; padding: 10px;"><a href="#" class="aisAlive">按热度</a></div>
+				<div style="display: inline; padding: 10px;"><a href="#">按时间</a></div>
+			</div>
+			<!-- 评论区 -->
+			<div>
+				<span style="color: #ff8200;">付恩凯：</span><span>我一下把你肠子掏出来</span><br>
+				<span style="font-size: 12px;">2022-7-1 08:00:00</span>&nbsp;&nbsp;&nbsp;<span style="font-size: 12px;">88人觉得很赞</span>
+			</div>
+			<!-- 分页 -->
+			<div style="text-align: center; margin: 30px 0px; color: #999999;">
+				<input class="page" type="button" value="上一页"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共&nbsp;{{pages}}&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="page" type="button" value="下一页"/>
+			</div>
+		</div>
+		<!-- 评论区 end -->
+	</body>
+</html>

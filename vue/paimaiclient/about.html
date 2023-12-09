@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>卓越--联系我们</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+<link href="JsCss/common.css" rel="stylesheet" media="screen" type="text/css" />
+<script type="text/javascript" src="JsCss/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="JsCss/vue.min.js"></script>
+<script type="text/javascript" src="JsCss/axios.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=0DBTh1xpZIXyV9u1CzpbyFsh"></script>
+<script type="text/javascript" src="JsCss/marker.js" ></script>
+<script src="JsCss/index.js"></script>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>卓越地图</title>  
+<style type="text/css">  
+	#container{
+		width:	600px;
+		height: 250px;
+		border: solid 1px #AAA;
+	}  
+</style>
+</head>
+
+<body>
+    <div class="header">
+         <ul class="top-link">
+            <li class="title"><a href="#" onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('huiyuaninsert.html');"title='设置本站为浏览器首页(启始页)'>设为首页</a></li>
+            <li class="pi"></li>
+            <li class="title"><a target=_top href="huiyuaninsert.html?0">注册</a></li>
+            <li class="pi"></li>
+            <li class="title"><a href="huiyuaninsert.html?1">登录</a></li>
+        </ul>
+        
+        <div class="logo"><a href="index.html"><img src="images/logo.png" width="250" height="82" /></a></div>
+        <div class="menu">
+            <ul>
+                <li class="active" ><a href="about.html">关于我们</a><span>about us</span></li>
+                <li ><a href="auctioning.html">拍卖信息</a><span>Auction information</span></li>
+                <li ><a href="product.html">商品展示</a><span>Product showcase</span></li>
+                <li ><a href="showData.html">个人信息</a><span>Personal information</span></li>
+                <li ><a href="chargeMoney.html">资金管理</a><span>Money management</span></li>
+                
+            </ul>
+        </div>
+    </div>
+    <!-- 菜单和下面模块的间隔-->
+    <div class="clr50"></div>
+	<!-- 图片 -->
+    <div class="zy_banner_bg">
+    	<div class="zy_banner"></div>
+    </div>
+    
+    
+    
+    <div class="zy_main" id="about">
+    	<div class="Left_subMenu">
+        	<div class="top_bg"></div>
+            <div class="c_bg">
+            	<div class="title">关于我们</div>
+                <ul>
+                	<li v-on:click="showinfo(0)" :class="{'activer':num==0}"><a href="#">企业简介</a></li>
+                    <li v-on:click="showinfo(1)" :class="{'activer':num==1}"><a href="#">拍卖流程</a></li>
+                    <li v-on:click="showinfo(2)" :class="{'activer':num==2}"><a href="#">企业视频</a></li>
+                    <li v-on:click="showinfo(3)" :class="{'activer':num==3}"><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="bottom_bg"></div>
+            
+            <div class="ph">
+            	<img src="images/ph.png" width="169" height="67" />
+            </div>
+        </div>
+        
+        <div id="intro" class="zy_right" v-show="num==0">
+        	<div class="position">当前位置：<a href="#">关于我们</a>  >  <a href="#">企业简介</a></div>
+          <div class="zy_title"><p>企业简介<span> About us </span></p></div>
+                <div class="cz-con-text">
+                    <p>
+					卓越注册资金为1000万元人民币，经营范围包括房地产、生活资料、生产资料、交通工具、文物、艺术品等的拍卖业务，公司拥有1300多平方米的办公及拍卖大厅、室内外仓储场地，以及适应拍卖业务需求的现代办公设备，为拍卖业务的顺利开展提供了良好的硬件保障。
+					</p>
+                    <p>
+　					卓越是中国拍卖行业AAA级企业，中国拍卖行业协会常务理事单位，沈阳市拍卖行业协会副会长单位；同时，也是沈阳市公物拍卖指定单位，国家文物局首批颁发《文物拍卖许可证》允许经营一、二、三类文物拍卖业务单位，名列“中国拍卖百强企业”之列，系全国“守合同、重信用”企业和沈阳市“守合同，重信用”企业、沈阳市合同信用等级AAA级企业。
+					</p>
+                    <p>
+					卓越拥有一支经验丰富、业务资深的骨干队伍，由众多国家注册拍卖师、国家注册房地产（土地）估价师、国家注册会计师、国家注册律师，以及汽车鉴定、房产经纪、国家级文物鉴定等专业从业资格人员组成。团队成员中大多长期在房地产、金融、物资、破产清算和文物等领域工作，具有较高的专业素养和实践经验，特别是对上述领域拍卖业务中的难点、疑点有独到的见解和妥善的处理方法。</p>
+					<p>
+					卓越一贯坚持“一槌定双赢、诚信促满意”的经营理念，恪守“客户为本、服务至上”的服务准则。公司内部机构设置合理，规章制度健全，操作规范，已顺利通过ISO9001：2000国际标准化质量体系认证。在经营实践中，卓越拍卖构建了稳定的业务渠道和行业宽泛的客户网络，在历次拍卖活动中保持了较高的成交率和良好的商誉。目前，卓越拍卖已成为沈阳市高院司法委托拍卖机构入围企业之一，并先后成为多家银行、沈阳市住房保障和房屋管理局、沈阳市规划和国土资源管理局等单位的指定拍卖单位。近年来，卓越拍卖年均拍卖场次超过50场，并多次与外省市其它拍卖企业密切合作，联手主持异地拍卖，年拍卖成交额高达十亿多元，位居沈阳市拍卖行业前列。</p>	
+               </div>
+        </div>
+        
+        <div id="contact" class="zy_right" v-show="num==3">
+        	<div class="position">当前位置：<a href="#">联系我们</a>  >  <a href="#">联系方式</a></div>
+          <div class="zy_title"><p>联系我们<span> Contact us </span></p></div>
+           <div class="cz-cont">
+           
+           
+           		<div id="container"></div>
+					
+					
+					
+                <div class="cz-cont-title">
+                	<div class="cz-cont-t">
+                    	沈阳卓越发展有限公司<br/><span>PAIPAI DEVELOPMENT LIMIT COMPANY</span>
+                    </div>
+                    <div class="cz-adress">
+                    	<p>电&nbsp; &nbsp; &nbsp; &nbsp;话： 1008611&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 传&nbsp; &nbsp; &nbsp; &nbsp;真： 0000-0000000</p>
+                        <p>拍卖热线： 400-000-000&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  网&nbsp; &nbsp; &nbsp; &nbsp;址： www.zhuoyuepaipai.com</p>
+                     </div>
+                </div>
+           </div>
+        </div>
+        
+        <div id="video" class="zy_right" v-show="num==2">
+        	<div class="position">当前位置：<a href="#">关于我们</a>  >  <a href="#">企业视频</a></div>
+            <div class="zy_title"><p>企业视频<span>Corporate video</span></p></div>
+            
+            <div class="videobox">
+                <div class="video-img">
+                    <embed id="js_videoCon_1" class="js_videoCon"   src="http://player.youku.com/player.php/sid/XNTMyNzE2ODk2/v.swf" allowFullScreen="true" quality="high" width="615" height="380" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+                    <embed id="js_videoCon_2" class="js_videoCon" style="display:none"  src="http://player.youku.com/player.php/sid/XNTMyNzM4MzA4/v.swf" allowFullScreen="true" quality="high"  width="615" height="380" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+                    <embed id="js_videoCon_3" class="js_videoCon" style="display:none"  src="http://player.youku.com/player.php/sid/XNTMyNzQ1MjQw/v.swf" allowFullScreen="true" quality="high"  width="615" height="380" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+                    <embed id="js_videoCon_4" class="js_videoCon" style="display:none"  src="http://player.youku.com/player.php/sid/XNTMyODE3NTU2/v.swf" allowFullScreen="true" quality="high"  width="615" height="380" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+                    <embed id="js_videoCon_5" class="js_videoCon" style="display:none"  src="http://player.youku.com/player.php/sid/XNTMyNzE2ODk2/v.swf" allowFullScreen="true" quality="high" width="615" height="380" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+                    <embed id="js_videoCon_6" class="js_videoCon" style="display:none"  src="http://player.youku.com/player.php/sid/XNTMyNzM4MzA4/v.swf" allowFullScreen="true" quality="high"  width="615" height="380" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+                    <embed id="js_videoCon_7" class="js_videoCon" style="display:none"  src="http://player.youku.com/player.php/sid/XNTMyNzQ1MjQw/v.swf" allowFullScreen="true" quality="high"  width="615" height="380" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+                    <embed id="js_videoCon_8" class="js_videoCon" style="display:none"  src="http://player.youku.com/player.php/sid/XNTMyODE3NTU2/v.swf" allowFullScreen="true" quality="high"  width="615" height="380" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+                    <div id="video_introduction">视频标题1</div>
+                </div>
+                
+                
+                <div style="float:left; padding-left:10px;">
+                    <div id="up" class="up2"></div>
+                    <div class="video-list">
+                        <ul>
+                            <li class="now" id="http://player.youku.com/player.php/sid/XNTMyNzE2ODk2/v.swf" video="1" vid="1" title="视频1">
+                                <img src="images/video.gif" width="92" height="52">
+                            </li>
+                            <li id="http://player.youku.com/player.php/sid/XNTMyNzM4MzA4/v.swf" video="2" vid="2" title="视频2">
+                                <img src="images/video.gif" width="92" height="52">
+                            </li>
+                            <li id="http://player.youku.com/player.php/sid/XNTMyNzQ1MjQw/v.swf" video="3" vid="3" title="视频3">
+                                <img src="images/video.gif" width="92" height="52">
+                            </li>
+                            <li id="http://player.youku.com/player.php/sid/XNTMyODE3NTU2/v.swf" video="4" vid="4" title="视频4">
+                                <img src="images/video.gif" width="92" height="52">
+                            </li>
+                            <li id="http://player.youku.com/player.php/sid/XNTMyNzE2ODk2/v.swf" video="5" vid="5" title="视频5">
+                                <img src="images/video.gif" width="92" height="52">
+                            </li>
+                            <li id="http://player.youku.com/player.php/sid/XNTMyNzM4MzA4/v.swf" video="6" vid="6" title="视频6">
+                                <img src="images/video.gif" width="92" height="52">
+                            </li>
+                            <li id="http://player.youku.com/player.php/sid/XNTMyNzQ1MjQw/v.swf" video="7" vid="7" title="视频7">
+                                <img src="images/video.gif" width="92" height="52">
+                            </li>
+                            <li id="http://player.youku.com/player.php/sid/XNTMyODE3NTU2/v.swf" video="8" vid="8" title="视频8">
+                                <img src="images/video.gif" width="92" height="52">
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="down" class="down"></div>
+                </div>
+            </div>
+ 
+        </div>
+        
+        
+        <div id="process" class="zy_right" v-show="num==1">
+        	<div class="position">当前位置：<a href="#">关于我们</a>  >  <a href="#">拍卖流程</a></div>
+          <div class="zy_title"><p>拍卖流程<span> Auction Process </span></p></div>
+                <div class="cz-con-text">
+           <p>
+                    一、阅读拍卖公告和拍品预告页面，了解拍品的基本信息、拍卖的时间、成交款支付的方式和期限、提货的方式和期限、不能及时付款或提货的法律风险及其他注意事项。
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二、联系具体负责的拍卖人，了解拍品详情、权利及实物瑕疵、具体操作方式等参拍细节。
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;三、按照拍卖公告公示的时间和地点，联系拍卖人，安排实地查看拍品。未实地查看拍品的风险请参看《海关拍卖不实地查看拍品风险》。
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;四、参与竞拍报名，阅读并勾选同意《海关拍卖用户竞拍服务协议》。
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;五、提供用户实名信息。具体竞拍报名的规则请参看《海关拍卖竞拍报名须知》。
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;六、交纳保证金，取得竞拍资格。用户可以通过网银支付、京东支付、微信支付、银联在线支付、京东钱包等方式交纳保证金。保证金的收取、扣除和退还细则请参看《海关拍卖竞拍保证金须知》。
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;七、出价竞拍。在拍卖开始后，获得竞拍资格的用户可以在线上出价竞拍。参与竞拍的详细规则请参看《海关拍卖竞拍规则》。
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;八、支付货款。竞得拍品的用户需要在72小时内完成全部成交款及相应的佣金的支付，如果保证金小于成交款，用户缴纳的保证金将自动转化为部分成交款，用户需在规定时间内交纳剩余尾款；如果保证金金额大于或者等于最终成交价，用户需要全额支付货款，保证金将在订单完成后返还给用户。用户可以通过网银支付、京东支付、微信支付、银联在线支付、京东钱包等方式交纳成交款及佣金。支付完成后，用户可以在“我的订单”中，查找到该笔订单的详细信息。
+
+关于佣金的相关情况，请参看《海关拍卖佣金条款》。
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;九、下载打印系统弹出的《成交确认书》。成交确认书中会列明拍品信息和成交信息，以及买受人与拍卖人的权利义务关系。成交确认书的具体内容请参见《海关拍卖成交确认书》。
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;十、提取拍品。用户与拍卖人联系，携带打印好的《成交确认书》、用户实名信息的相关证明材料等文件，在付清全部款项后7个工作日内到拍品所在地提取拍品。
+                    </p>
+				</div>
+        </div>
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<div id="footer-top">
+        <div class="footer-text">
+            © 小佟拍卖行  
+        </div>
+    </div>
+<script>
+	var vm = new Vue({
+		el:'#about',
+		data:{					        
+			num:3
+		},
+		methods:{
+			showinfo:function(i){
+				this.num = i; 
+			}
+		}
+	});
+	//经度
+	var longitude = 123.4278;
+	//纬度
+	var latitude = 41.8165;
+	var map = new BMap.Map("container");                 // 创建地图实例  
+	var point = new BMap.Point(longitude, latitude);     // 创建点坐标  (沈阳市)
+	map.centerAndZoom(point, 15);                        // 初始化地图，设置中心点坐标和地图级别  
+	//var marker = new BMap.Marker(point);               // 创建标注点
+	//map.addOverlay(marker);                            // 添加标注点
+	var myCompOverlay = new ComplexCustomOverlay(point, "卓越ZYP");   // 创建自定义标注点
+	map.addOverlay(myCompOverlay);                                    // 添加自定义标注点
+	//页面加载
+	$(function() {
+		vm.num = 0;
+	})
+</script>    
+ 
+</body>
+</html>

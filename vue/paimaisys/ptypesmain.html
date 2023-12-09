@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>ptypes here</title>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="js/element_ui.css" />
+		<script src="js/vue.min.js"></script>
+		<script src="js/element_ui.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<el-breadcrumb separator="/">
+			  <el-breadcrumb-item>首页</el-breadcrumb-item>
+			  <el-breadcrumb-item>商品类型管理</el-breadcrumb-item>
+			  <el-breadcrumb-item>列表展示</el-breadcrumb-item>
+			</el-breadcrumb>
+			<el-row>
+				<el-col style="text-align: center;"><h2>商品类型管理</h2></el-col>
+			</el-row>
+			<el-row>
+			  <el-button type="primary">新增</el-button>
+			</el-row>
+			<el-table :data="list" ref="ptypess" style="width: 100%;">
+				<el-table-column type="selection" align="center"></el-table-column>
+				<el-table-column prop="tid" label="编号" align="center"></el-table-column>
+				<el-table-column prop="tname" label="名称" align="center"></el-table-column>
+				<el-table-column prop="tbackup" label="备注" align="center"></el-table-column>
+				<el-table-column label="操作" align="center" width="180px">
+					<template slot-scope="scope">
+						<el-button size="small" type="primary" @click="toupdate(scope.$index, show=true, url='update', action='修改')">修改</el-button>
+						<el-button size="small" type="danger" @click="deleteptypes(scope.$index)">删除</el-button>
+					</template>
+				</el-table-column>
+			</el-table>
+			
+			<el-dialog :title="action" :visible.sync="show">
+				<el-form ref="form" :model="ptypes" label-width="80px" size="mini">
+					<el-form-item label="编号">
+						<el-input v-model="ptypes.tid"></el-input>
+					</el-form-item>
+					<el-form-item label="名称">
+						<el-input v-model="ptypes.tname"></el-input>
+					</el-form-item>
+					<el-form-item label="备注">
+						<el-input v-model="ptypes.tbackup"></el-input>
+					</el-form-item>
+					<el-form-item size="large">
+						<el-button type="primary" size="medium" @click="modify">保存</el-button>
+					</el-form-item>
+				</el-form>
+			</el-dialog>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					show: false,
+					url: '',
+					action: '',
+					ptypes: {},
+					list: [],
+				},
+				created: function() {
+					
+					//this.selectList();
+					this.list=[{tname:'檀木家具'}]
+				},
+				methods: {
+					selectList: function() {
+						axios.post("ptypes/selectList").then(res=>{
+							this.list = res.data;
+						})
+					},
+					deleteptypes: function(i) {
+						this.$confirm("确认删除？", "提示", {
+							confirmButtonText: "确定",
+							cancelButtonText: "取消",
+							type: "warning"
+						}).then(()=>{
+							axios.post("ptypes/delete?tid="+this.list[i].tid).then(res=>{
+								if(res.data=="1"){
+									this.$message({
+										type: "success",
+										message: "操作成功！"
+									});
+									this.list.splice(i, 1);
+								}else{
+									this.$message({
+										type: "error",
+										message: "操作失败！"
+									});
+								}
+							})
+						}).catch(() => {
+							this.$message({
+								type: "info",
+								message: "已取消删除！"
+							});          
+						});
+					},
+					toinsert: function() {
+						this.ptypes = {};
+					},
+					toupdate: function(i) {
+						this.ptypes = this.list[i];
+					},
+					modify: function() {
+						axios.post("ptypes/"+this.url, this.ptypes).then(res=>{
+							if(res.data=="1"){
+								this.$message({
+									type: "success",
+									message: "操作成功！"
+								});
+								if(this.url.lastIndexOf("insert")>=0){
+									this.ptypes = {};
+									this.selectList();
+								}
+							}else{
+								this.$message({
+									type: "error",
+									message: "操作失败！"
+								});
+							}
+						}).catch(error=>{
+							if(error.response.status==401){
+								this.$message({
+								  dangerouslyUseHTMLString: true,
+								  message: "<a href='login.html' target='_top'>请先登录！3秒后返回登录页</a>"
+								});
+								setTimeout(()=> {
+									top.location = 'login.html';
+								}, 3000);
+							}else{
+								vm.msg = "服务器异常！";
+							}
+						})
+					},
+					deleteList: function() {
+						let selections = this.$refs.ptypess.selection;
+						if(selections.length==0){
+							this.$message({
+								type: "error",
+								message: "必须选中一行！"
+							});
+							return;
+						}
+						let tids = [];
+						for(let i=0; i<selections.length; i++){
+							tids.push(selections[i].tid);
+						}
+						this.$confirm("是否删除所有选中项？", "提示", {
+							confirmButtonText: "确定",
+							cancelButtonText: "取消",
+							type: "warning"
+						}).then(()=>{
+							var params = new URLSearchParams();
+							params.append("tid", tids);
+							axios.post("ptypes/deleteList", params).then(res=>{
+								if(res.data=="1"){
+									this.$message({
+										type: "success",
+										message: "删除成功！"
+									});
+									this.selectList();
+								}else{
+									this.$message({
+										type: "error",
+										message: "删除失败！"
+									});
+								}
+							})
+						}).catch(() => {
+							this.$message({
+								type: "info",
+								message: "已取消删除！"
+							});
+						});
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
